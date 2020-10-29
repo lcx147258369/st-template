@@ -1,0 +1,37 @@
+{   
+    "easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [
+		{
+            "path": "pages/index/index",
+            "style": {
+				"enablePullDownRefresh":true,
+               //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "首页"
+            }
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "视推联盟",
+        "navigationBarBackgroundColor": "#fff",
+        "backgroundColor": "#F1F6F9"
+    },
+    "tabBar": {
+        "color": "#262626",
+        "selectedColor": "#7F0AE3",
+		"backgroundColor": "#fff",
+		"borderStyle": "white",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "/static/tab_icon1@2x.png",
+                "selectedIconPath": "/static/tab_cur_icon1@2x.png",
+                "text": "首页"
+            }
+        ]
+    }
+}

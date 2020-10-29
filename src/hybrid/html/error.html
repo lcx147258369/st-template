@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>Error</title>
+        <script type="text/javascript">
+            var ab_ = {
+                plusReady(callback) {
+                    if (window.plus) {
+                        callback()
+                    } else {
+                        document.addEventListener('plusready', callback)
+                    }
+                }
+            }
+
+            ab_.plusReady(function() {
+                var native
+                var center
+                try {
+                    native = plus.os.name.toLowerCase()
+                    if (native === 'android') {
+                        center = plus.android.importClass("com.absir.uniplugin.AbCenter").ME()
+
+                    } else if (plus.ios) {
+                        center = plus.ios.importClass("AbCenter").ME()
+                    }
+
+                } catch (e) {
+                    console.error(e)
+            }
+
+            ab_.native = native
+            ab_.center = center
+            ab_.postEvent = function(event, paras) {
+                if (center) {
+                    if (native === 'android') {
+                        center.postEvent(event, paras)
+
+                    } else {
+                        plus.ios.invoke(center, 'postEvent:paras:', event, paras)
+                    }
+                    return true
+                }
+            }
+
+            plus.key.addEventListener('backbutton', function() {
+                    backClick()
+                }, false)
+            })
+
+            function backClick() {
+                (history.length == 1) && closeClick();
+                var c = setTimeout(function() {
+                    closeClick();
+                }, 1000);
+                window.onbeforeunload = function() {
+                    clearTimeout(c);
+                }
+                history.go(-2);
+            }
+
+            function closeClick() {
+                ab_.postEvent('message', 'backProj')
+            }
+
+            function restartClick() {
+                plus.runtime.restart()
+            }
+        </script>
+        <style></style>
+    </head>
+    <body>
+        <p>
+            找不到页面~~~
+        </p>
+        <div>
+            <button onclick="restartClick()">刷新</button>
+        </div>
+    </body>
+</html>
