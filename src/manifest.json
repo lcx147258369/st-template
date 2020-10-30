@@ -1,9 +1,9 @@
 {
-    "name" : "视推联盟",
+    "name" : "{name}",
     "appid" : "__UNI__3B86E0C",
     "description" : "",
-    "versionName" : "1.0.6",
-    "versionCode" : 106,
+    "versionName" : "{ version }",
+    "versionCode" : 100,
     "transformPx" : false,
     "app-plus" : {
         /* 5+App特有相关 */
