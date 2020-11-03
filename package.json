@@ -1,6 +1,6 @@
 {
-  "name": "{{ name }}",
-  "version": "{{ version }}",
+  "name": "",
+  "version": "",
   "private": true,
   "scripts": {
     "serve": "npm run dev:h5",

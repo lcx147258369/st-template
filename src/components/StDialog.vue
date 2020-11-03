@@ -3,15 +3,28 @@
      <uMask :show="true" z-index="999" :zoom="false" class="flex flex-align-center flex-justify-center">
         <view class="content uni-white-bg">
             <view class="close text-right">
-                <image class="close-icon" src="../static/close@2x.png" @tap="handleClose"></image>
+                <u-icon class="close-icon" name="close" @tap="handleClose"></u-icon>
             </view>
             <view class="title text-center">{{ title }}</view>
             <view class="body">
                 <slot name="content"></slot>
             </view>
             <view class="btn-group flex flex-justify-around">
-                <button class="cancel flex-1 uni-bg-color-opacity" v-if="isCancel" @tap="handleClose">{{cancelTitle}}</button>
-                <button class="confirm flex-1 uni-bg-color-primary" v-if="isConfirm" @tap="handelConfirm">{{ confirmTitle }} </button>
+                <button 
+                    class="cancel flex-1 uni-bg-color-opacity" 
+                    v-if="isCancel" 
+                    @tap="handleClose"
+                >
+                    {{cancelTitle}}
+                </button>
+                <button 
+                    class="confirm flex-1 uni-bg-color-primary" 
+                    v-if="isConfirm" 
+                    @tap="handelConfirm"
+
+                >
+                    {{ confirmTitle }} 
+                </button>
             </view>
         </view>
      </uMask>
@@ -33,9 +46,6 @@ export default class StDialog extends Vue {
     @Prop({default: true}) isConfirm!:boolean;  // 是否需要确定按钮
     @Prop({default: '取消'}) cancelTitle!:string; // 取消按钮的文本自定义
     @Prop({default: '确定'}) confirmTitle!:string; // 确定按钮的文本自定义
-    @Prop({default: false}) cancelPlain!:boolean; // 取消按钮是否需要镂空
-    @Prop({default: false}) confirmPlain!:boolean; // 确定按钮是否需要镂空
-
 
     handleClose () {
         this.$emit('close', false);

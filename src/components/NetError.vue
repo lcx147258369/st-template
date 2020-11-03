@@ -1,5 +1,5 @@
 <template>
-    <view class="box" v-if="!networkType" :style="{height:`${netErrHieght}px`}">
+    <view class="box" v-if="!networkType" :style="styles">
         <view v-if="!refreshing" class="main_box">
             <view class="tip"></view>
             <text class="title">网络请求失败</text>
@@ -13,15 +13,12 @@
 
 <script lang="ts">
 import { Component, Vue, Watch,Prop } from "vue-property-decorator";
-import {SystemModule} from "@/store/modules/system";
-export default class NetError extends Vue{
+import { SystemModule } from "@/store/modules/system";
+
+export default class NetError extends Vue {
     @Prop({default: ''}) url!: ''; // 图片地址
-    @Prop({default:0}) netErrHieght!:number; // 错误的高度
-    data(){
-        return{
-            refreshing:false,
-        }
-    }
+    @Prop({default: null}) styles!: object; // 错误的高度
+    refreshing = false;
 
     get networkType(){
         return SystemModule.networkType;
@@ -34,7 +31,6 @@ export default class NetError extends Vue{
                     url:(this as any).url
                 })
             }else{
-                console.log('emit')
                 this.$emit('onconnect');
             }
         }
@@ -81,41 +77,42 @@ export default class NetError extends Vue{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    .btn {
+        width: 160rpx;
+        height: 64rpx;
+        background: #F4F4F4;
+        border: 2rpx solid #CCCCCC;
+        border-radius: 4rpx;
+        color: #000000;
+        text-align: center;
+        line-height: 64rpx;
+        font-size: 28rpx;
+
+    }
+    .tip{
+        background-image: url(../static/network_error.png);
+        background-size: 100% 100%;
+        width: 177rpx;
+        height: 177rpx;
+    }
+    .title{
+        font-size: 32rpx;
+        line-height: 42rpx;
+        color: #333333;
+        letter-spacing: 1rpx;
+        margin-top: 60rpx;
+    }
+    .msg{
+        font-size: 28rpx;
+        line-height: 38rpx;
+        color: #999999;
+        letter-spacing: 1rpx;
+        opacity: 1;
+        margin-top: 20rpx;
+        margin-bottom: 44rpx;
+        text-align: center;
+    }
 
 }
-.btn{
-    width: 160rpx;
-    height: 64rpx;
-    background: #F4F4F4;
-    border: 2rpx solid #CCCCCC;
-    border-radius: 4rpx;
-    color: #000000;
-    text-align: center;
-    line-height: 64rpx;
-    font-size: 28rpx;
 
-}
-.tip{
-    background-image: url(../static/network_error.png);
-    background-size: 100% 100%;
-    width: 177rpx;
-    height: 177rpx;
-}
-.title{
-    font-size: 32rpx;
-    line-height: 42rpx;
-    color: #333333;
-    letter-spacing: 1rpx;
-    margin-top: 60rpx;
-}
-.msg{
-    font-size: 28rpx;
-    line-height: 38rpx;
-    color: #999999;
-    letter-spacing: 1rpx;
-    opacity: 1;
-    margin-top: 20rpx;
-    margin-bottom: 44rpx;
-    text-align: center;
-}
 </style>

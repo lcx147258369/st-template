@@ -1,8 +1,8 @@
 {
-    "name" : "{{name}}",
+    "name" : "",
     "appid" : "__UNI__3B86E0C",
-    "description" : "{{description}}",
-    "versionName" : "{{ version }}",
+    "description" : "",
+    "versionName" : "",
     "versionCode" : 100,
     "transformPx" : false,
     "app-plus" : {

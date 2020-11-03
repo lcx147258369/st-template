@@ -54,7 +54,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { platform, protocal } from "@/utils/util";
+import { platform } from "@/utils/util";
+import { protocal } from "@/utils/filter";
 
 @Component({})
 export default class StUploadVideo extends Vue {

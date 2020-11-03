@@ -1,6 +1,6 @@
 {   
     "easycom": {
-		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+		"^u-(.*)": "uview-ui/components/u-$1/u-$1.vue"
 	},
 	"pages": [
 		{
@@ -10,7 +10,62 @@
                //#ifdef H5 || APP-PLUS
                "navigationStyle": "custom", 
 			   //#endif
-               "navigationBarTitleText": "首页"
+               "navigationBarTitleText": "组件"
+            }
+        },
+        {
+            "path": "pages/modules/modules",
+            "style": {
+				"enablePullDownRefresh":true,
+               //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "模块"
+            }
+        },
+        {
+            "path": "pages/stDialogPage/stDialogPage",
+            "style": {
+               //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "Dialog"
+            }
+        },
+        {
+            "path": "pages/stCollectPage/stCollectPage",
+            "style": {
+               //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "Collect"
+            }
+        },
+        {
+            "path": "pages/stScrollListPage/stScrollListPage",
+            "style": {
+               //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "ScrollList"
+            }
+        },
+        {
+            "path": "pages/stPreviewImagePage/stPreviewImagePage",
+            "style": {
+               //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "PreviewImage"
+            }
+        },
+        {
+            "path": "pages/stLoadingPage/stLoadingPage",
+            "style": {
+                //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "Loading"
             }
         }
     ],
@@ -30,7 +85,13 @@
                 "pagePath": "pages/index/index",
                 "iconPath": "/static/tab_icon1@2x.png",
                 "selectedIconPath": "/static/tab_cur_icon1@2x.png",
-                "text": "首页"
+                "text": "组件"
+            },
+            {
+                "pagePath": "pages/index/index",
+                "iconPath": "/static/tab_icon2.png",
+                "selectedIconPath": "/static/tab_cur_icon2.png",
+                "text": "模块"
             }
         ]
     }
