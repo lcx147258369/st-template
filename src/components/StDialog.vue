@@ -1,6 +1,6 @@
 <template>
   <view>
-     <uMask :show="true" z-index="999" :zoom="false" class="flex flex-align-center flex-justify-center">
+     <uMask :show="show" z-index="999" :zoom="false" class="flex flex-align-center flex-justify-center">
         <view class="content uni-white-bg">
             <view class="close text-right">
                 <u-icon class="close-icon" name="close" @tap="handleClose"></u-icon>
@@ -42,17 +42,18 @@ import uMask from "uview-ui/components/u-mask/u-mask.vue";
 })
 export default class StDialog extends Vue {
     @Prop({default: ''}) title!:string; // 弹窗标题
+    @Prop({default: false}) show!:boolean; // 是否显示
     @Prop({default: false}) isCancel!:boolean;  // 是否需要取消按钮
     @Prop({default: true}) isConfirm!:boolean;  // 是否需要确定按钮
     @Prop({default: '取消'}) cancelTitle!:string; // 取消按钮的文本自定义
     @Prop({default: '确定'}) confirmTitle!:string; // 确定按钮的文本自定义
 
     handleClose () {
-        this.$emit('close', false);
+        this.$emit('confirm:show', false);
     }
 
     handelConfirm () {
-        this.$emit('confirm', false);
+        this.$emit('confirm:show', false);
     }
 }
 

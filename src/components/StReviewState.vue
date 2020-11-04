@@ -11,18 +11,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator"; 
 
 @Component({})
 export default class ReviewState extends Vue {
-    @Prop({default: ''}) status!: any; // 状态
     @Prop({default: ''}) stateText!:string;  // 状态文本
     @Prop({default: ''}) hintText!:string;  // 校验文本
     @Prop({default: ''}) type!: string;  // 图标类型
-
-    created () {
- 
-    }
 }
 
 </script>

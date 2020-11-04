@@ -1,7 +1,12 @@
 <template>
-  <view class="container">
+    <view class="container">
       <view class="content">
-          
+          <StReviewState
+            :stateText="stateText"
+            :type="type"
+            :hintText="hintText"
+          >
+          </StReviewState>
       </view>
       <view class="list">
           <view class="caption"></view>
@@ -19,75 +24,60 @@
               </view>
           </view>
       </view>
-
-        <StDialog
-            title="弹窗噢"
-            :show.sync="show"
-            @confirm:show="handleClose"
-            :isCancel="isCancel"
-            :cancelTitle="cancelText"
-            :confirmTitle="confirmText"
-        >
-        <view slot="content">
-            这里是要显示的内容噢？看到了就确认一下
-        </view>
-        </StDialog>
   </view>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import StReviewState from "@/components/StReviewState.vue";
 import StSwitch from "@/components/StSwitch.vue";
-import StDialog from "@/components/StDialog.vue";
 
 @Component({
     components: {
-        StSwitch,
-        StDialog
+        StReviewState,
+        StSwitch
     }
 })
-export default class stDialogPage extends Vue {
+export default class stReviewStatePage extends Vue {
     dataList = [
         {
-            title: '基础使用',
-            confirmText: '显示',
-            cancelText: '隐藏',
+            title: '显示提示信息',
+            confirmText: '是',
+            cancelText: '否',
             activeClass: '',
             id: 0
         },
         {
-            title: '取消按钮',
+            title: '多状态',
             confirmText: '是',
             cancelText: '否',
             activeClass: '',
             id: 1
         },
         {
-            title: '自定义按钮',
+            title: '状态描述修改',
             confirmText: '是',
             cancelText: '否',
             activeClass: '',
             id: 2
         }
     ];
-    show = false;
-    isCancel = true;
-    cancelText = '取消';
-    confirmText = '确定';
-    activeClass = '';    
-    listIndex = 0;
 
-
+    hintText = '';
+    type = 'error';
+    stateText = '订单审核失败';
     handleConfirm (index: number) {
-        this.show = true;
+
         this.dataList[index].activeClass = 'active';
         switch (index) {
+            case 0:
+                this.hintText = '请重新提交';
+                break;
             case 1:
-                this.isCancel = true;
+                this.type = 'success';
                 break;
             case 2:
-                this.confirmText = '自定义确定';
-                this.cancelText = '自定义取消';
+                this.stateText = '这是自定义的状态描述';
                 break;
         }
       
@@ -96,33 +86,20 @@ export default class stDialogPage extends Vue {
         this.dataList[index].activeClass = '';
         switch (index) {
             case 0:
-                this.show = false;
+                this.hintText = '';
                 break;
             case 1:
-                this.isCancel = false;
-                this.show = true;
+                this.type = 'error';
                 break;
             case 2:
-                this.show = true;
-                this.confirmText = '确定';
-                this.cancelText = '取消';
+                this.stateText = '订单审核失败';
                 break;
 
         }
     }
-
-    handleClose () {
-        this.show = false;
-        this.dataList[this.listIndex].activeClass = '';
-    }
-
-
 }
 
 </script>
 
 <style lang="scss" scoped>
-.container {
-    padding: 40rpx 40rpx;
-}
 </style>

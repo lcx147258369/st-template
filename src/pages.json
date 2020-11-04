@@ -67,6 +67,15 @@
 			   //#endif
                "navigationBarTitleText": "Loading"
             }
+        },
+        {
+            "path": "pages/stReviewStatePage/stReviewStatePage",
+            "style": {
+                //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "ReviewState"
+            }
         }
     ],
 	"globalStyle": {

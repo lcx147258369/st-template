@@ -1,9 +1,6 @@
 <template>
 	<view class="box">
 		<VipModal v-if="type =='vip'"></VipModal>
-		<updata-modal :isLauch='isLauch' v-if="type=='updatainit'||type == 'updataset'"></updata-modal>
-		<tikCodeModal v-if="type=='tikCode'" @auth="onTikModalClick" :codeInfo="{}"></tikCodeModal>
-		<bind-tik-modal v-if="type=='bindTik'" @nobind="noBind"></bind-tik-modal>
 	</view>
 </template>
 
@@ -11,10 +8,6 @@
     // const VipModal = () => import(path)
 	export default {
 		components:{
-			VipModal,
-			updataModal,
-			tikCodeModal,
-			bindTikModal
 		},
 		data() {
 			return {

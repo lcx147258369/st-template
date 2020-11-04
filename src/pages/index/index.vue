@@ -47,6 +47,12 @@ export default class index extends Vue {
             title: 'Loading',
             route: '/pages/stLoadingPage/stLoadingPage',
             id: 4
+        },
+        {
+            icon: '',
+            title: 'ReviewState',
+            route: '/pages/stReviewStatePage/stReviewStatePage',
+            id: 5
         }
     ]
 }

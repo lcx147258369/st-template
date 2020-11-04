@@ -62,9 +62,9 @@ export default class StUploadVideo extends Vue {
     @Prop({default: 0}) loadLeng!: number;  // 上传的数量
     @Prop({default: 'img'}) loadType!:string; // 上传类型
     @Prop({default: 1}) maximum!:number;    // 最大选择数
-    @Prop({default: ''}) dataList!: any; // 
+    @Prop({default: ''}) dataList!: any; // 展示上传的图片
     @Prop({default: ''}) params!: any; // 额外参数
-    @Prop({default: false}) disabled!: boolean;
+    @Prop({default: false}) disabled!: boolean; // 禁用上传
     @Prop({default: false}) isErrorText!: boolean; // 是否显示失败的原因 
     @Prop({default: ''}) videoDuration!: number; // 视频
 
