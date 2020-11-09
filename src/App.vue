@@ -14,13 +14,13 @@ export default Vue.extend({
     },
 
     onLaunch () {
-         uni.onNetworkStatusChange((res)=>{
-            SystemModule.SET_NETWORKTYPE(res.isConnected);
-         })
+        //  uni.onNetworkStatusChange((res)=>{
+        //     SystemModule.SET_NETWORKTYPE(res.isConnected);
+        //  })
     }
 });
 </script>
 
 <style lang="scss">
-@import "./reset.css";
+@import "uview-ui/index.scss";
 </style>

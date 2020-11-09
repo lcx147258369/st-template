@@ -9,13 +9,19 @@
           >
           </u-cell-item>
       </view>
+      <NetError></NetError>
   </view>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import NetError from "@/components/NetError.vue";
 
-@Component({})
+@Component({
+    components: {
+        NetError
+    }
+})
 export default class index extends Vue {
     list = [
         {
@@ -53,6 +59,19 @@ export default class index extends Vue {
             title: 'ReviewState',
             route: '/pages/stReviewStatePage/stReviewStatePage',
             id: 5
+        },
+        {
+            icon: '',
+            title: 'Upload',
+            route: '/pages/stUploadPage/stUploadPage',
+            id: 6
+        },
+        {
+
+            icon: '',
+            title: 'Error',
+            route: '/pages/error/error',
+            id: 7
         }
     ]
 }

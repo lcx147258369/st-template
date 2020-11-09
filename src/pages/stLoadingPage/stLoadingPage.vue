@@ -115,4 +115,7 @@ export default class stLoadingPage extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.container {
+    padding: 40rpx 40rpx;
+}
 </style>

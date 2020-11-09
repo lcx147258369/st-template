@@ -1,6 +1,6 @@
 <template>
     <view class="box" v-if="!networkType" :style="styles">
-        <view v-if="!refreshing" class="main_box">
+        <view >
             <view class="tip"></view>
             <text class="title">网络请求失败</text>
             <text class="msg">请检查您的网络
@@ -14,6 +14,7 @@
 <script lang="ts">
 import { Component, Vue, Watch,Prop } from "vue-property-decorator";
 import { SystemModule } from "@/store/modules/system";
+
 
 export default class NetError extends Vue {
     @Prop({default: ''}) url!: ''; // 图片地址

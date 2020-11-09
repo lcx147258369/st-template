@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import { $navigateTo, $redirect, $navigateBack, $switchTab, $reLunch, isNowPage,$showLoading, $hideLoading} from "./utils/util";
-import './reset.css';
 import uView from 'uview-ui';
 import NetError from '@/components/NetError.vue';
 import StLoading from '@/components/StLoading.vue';
@@ -11,7 +10,7 @@ import * as filter from '@/utils/filter';
 Vue.config.productionTip = false
 
 Vue.use(uView);
-Vue.component('NetError',NetError);
+// Vue.component('NetError',NetError);
 Vue.component('StLoading',StLoading);
 
 Vue.prototype.$http = api;

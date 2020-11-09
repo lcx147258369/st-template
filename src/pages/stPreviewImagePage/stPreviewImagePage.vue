@@ -105,4 +105,7 @@ export default class stPreviewImagePage extends Vue {
 </script>
 
 <style lang="scss" scoped>
+.container {
+    padding: 40rpx 40rpx;
+}
 </style>

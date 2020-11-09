@@ -3,50 +3,46 @@
       <view v-if="loadType == 'video'">
             <view v-if="dataList.length > 0" class="flex flex-1 flex-wrap">
                 <view 
-                     v-for="(item, index) in dataList"
-                    :key="index"
+                     v-for="item in dataList"
+                    :key="item.id"
                      class="upload-box"
                 >
                     <image 
                         class="upload-pic" 
-                        :src="item.video_cover_url"
+                        :src="item.cover"
                     >
                     </image>
-                    <u-icon class="play-circle" name="play-circle"  @click.self="handleTarget(item)" color="#ffffff" size="48"></u-icon>
-                    <u-icon class="close-icon" name="close" v-if="!item.status || item.status == 2" color="#ffffff" size="10" @click="handleClose"></u-icon>
+                    <u-icon class="play-circle" name="play-circle"  @click.self="handleTarget(item.id)" color="#ffffff" size="48"></u-icon>
+                    <u-icon class="close-icon" name="close" v-if="!item.status || item.status == 2" color="#ffffff" size="10" @click="handleDelete(item.id)"></u-icon>
                 </view>
-                   
             </view>
-            <image v-if="dataList.length < loadLeng" src="../static/upload_video@3x.png" class="upload-pic"  @tap="handleUploadVideo"></image>
+            <image v-if="dataList.length <= loadLeng" src="../static/upload_video@3x.png" class="upload-pic"  @tap="handleUploadVideo"></image>
       </view>
 
        <view v-if="loadType == 'img'">
-           
             <view 
                 class="flex flex-align-start flex-wrap"   
             >   
                 <view 
-                    v-for="(item, index) in dataList"
-                    :key="index"
+                    v-for="item in dataList"
+                    :key="item.id"
                     class="upload-box"
                 >
                      <image 
                         class="upload-pic" 
-                        :src="item.upload_url"
-                        @tap="handleTarget(item, index)"
+                        :src="item.cover"
+                        @tap="handleTarget(item.id)"
                     >
                     </image>
-                    <u-icon class="close-icon" name="close" v-if="!item.status || item.status == 2" color="#ffffff" size="10" @tap="handleClose(item)"></u-icon>
-                    <view @tap="handleClickBtn(item)" v-if="item.memo">
-                        <button class="error-btn" >查看原因</button>
+                    <u-icon class="close-icon" name="close" v-if="!item.status || item.status == 2" color="#ffffff" size="10" @tap="handleDelete(item.id)"></u-icon>
+                    <view v-if="$slots.footer">
+                        <slot name="footer"></slot>
                     </view>
                 </view>
-                <view class="upload-box" v-if="disabled == false && dataList.length < loadLeng">
+                <view class="upload-box" v-if="disabled == false && dataList.length <= loadLeng">
                     <image src="../static/upload_pic@3x.png" class="upload-pic"   @tap="handleUploadPic"></image>
                 </view>  
-                
             </view>
-            
       </view>
       
   </view>
@@ -56,38 +52,33 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { platform } from "@/utils/util";
 import { protocal } from "@/utils/filter";
+import service from "@/serve/request";
 
 @Component({})
-export default class StUploadVideo extends Vue {
+export default class StUpload extends Vue {
     @Prop({default: 0}) loadLeng!: number;  // 上传的数量
     @Prop({default: 'img'}) loadType!:string; // 上传类型
     @Prop({default: 1}) maximum!:number;    // 最大选择数
-    @Prop({default: ''}) dataList!: any; // 展示上传的图片
-    @Prop({default: ''}) params!: any; // 额外参数
+    @Prop({default: [], required: true}) dataList!: any; // 展示上传的图片
+    @Prop({default: null}) params!: object; // 额外参数
     @Prop({default: false}) disabled!: boolean; // 禁用上传
     @Prop({default: false}) isErrorText!: boolean; // 是否显示失败的原因 
-    @Prop({default: ''}) videoDuration!: number; // 视频
+    @Prop({default: '', required: true}) postUrl: string; // 上传的地址
 
-
-    handleTarget (item: any, index: number) {
-        if(this.loadType == 'img') {
-            const list = this.dataList.map((el: any) => protocal(el.upload_url));
-            uni.previewImage({
-                current: list[index],
-                urls: list
-            })
-            return
-        } 
-        (this as any).$navigateTo({url: `/pages/videoPage/videoPage?link=${item.upload_url || item.video_url}&cover=${item.video_cover_url}&duration=${item.duration || item.video_duration}`})
+    /**
+     * 点击播放按钮或者图片
+     */
+    handleTarget (index: number) {
+        this.$emit('click-cover', index);
     }
 
 
-    handleClose (item: any) {
-        this.$emit('delet', item.file_id || item.id);
+    handleDelete (index: any) {
+        this.$emit('delete', index);
     }
 
-    handleClickBtn (item: any) {
-        (this as any).$emit('click-btn', item);
+    handleClickBtn (index: any) {
+        (this as any).$emit('click-btn', index);
     }
 
     /**
@@ -154,13 +145,12 @@ export default class StUploadVideo extends Vue {
             const {
                 data,
                 id
-            } = await (this as any).$http.uploadVideo({
+            } = await (this as any).$http.uploadVideo(this.postUrl, {
                 file: file,
-                type: '1501',
                 params: this.params
             });
             if (id == "1000") {
-                this.$emit('loadEnd', data);
+                this.$emit('load-end', data);
             }
         } catch (err) {
             console.log(err);
@@ -194,24 +184,8 @@ export default class StUploadVideo extends Vue {
         reader.readAsDataURL(file);
         reader.onload = (e: any) => {
             let path = e.currentTarget.result;
-            (async () => {
-                try {
-                    const {
-                        data,
-                        id
-                    } = await (this as any).$http.uploadVideoCompress({
-                        file: path,
-                        type: '1501',
-                        params: this.params
-                    });
-                    if (id == "1000") {
-                        this.$emit('loadEnd', data);
-                    }
-                } catch (err) {
-                    console.log(err);
-                }
-            })();
-            
+            console.log(path);
+            this.postUploadVideo(path);
         }
        
     }
@@ -225,37 +199,10 @@ export default class StUploadVideo extends Vue {
             success: (chooseImageRes: any) => {
                 const files: any = chooseImageRes.tempFilePaths;
                 for(let file of files) {
-                    this.uploadPicRequest(file);
+                    this.postUploadVideo(file);
                 }
             }
         });
-    }
-
-     /**
-     * 提交上传图片接口
-     */
-    async uploadPicRequest (file: any) {
-        try {
-            if(file.size > (1024 * 1024 * 10)) {
-                return uni.showToast({
-                    title: '可上传图片最大为10MB'
-                })
-            }
-            uni.showLoading({
-                title: '上传中'
-            });
-            const { data, id } = await (this as any).$http.uploadPic({
-                type: '1013',
-                file: file
-            });
-            if(id == 1000) {
-                this.$emit('loadEnd', data);
-                uni.hideLoading();
-            }
-        }
-        catch(err) {
-            console.log(err);
-        }
     }
 }
 

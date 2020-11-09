@@ -164,7 +164,7 @@ export default class stScrollListPage extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.content {
-    padding-top: 200rpx;
+.container {
+    padding: 40rpx 40rpx;
 }
 </style>

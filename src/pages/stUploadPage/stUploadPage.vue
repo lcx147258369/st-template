@@ -1,15 +1,20 @@
 <template>
   <view class="container">
       <view class="content">
-          <StCollect 
-            :isCollect.sync="isCollect" 
-            iconSize="35" 
-            @collect="handleCollect"
-            :title="title"
-            :collectTitle="collectTitle"
+          <StUpload 
+            :dataList="uploadList"
+            :loadType="loadType"
+            :params="{type: '1501'}"
+            :postUrl="postUrl"
+            @load-end="handleLoadEnd"
+            @delete="handleDelete"
           >
-          </StCollect>
+            <template #footer v-if="btnShow">
+                 底部内容
+            </template>
+          </StUpload>
       </view>
+      
       <view class="list">
           <view class="caption"></view>
           <view class="list-item">
@@ -31,27 +36,26 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import StUpload from "@/components/StUpload.vue";
 import StSwitch from "@/components/StSwitch.vue";
-import StCollect from "@/components/StCollect.vue";
-
 
 @Component({
     components: {
-        StSwitch,
-        StCollect
+        StUpload,
+        StSwitch
     }
 })
-export default class stCollectPage extends Vue {
+export default class stUploadPage extends Vue {
     dataList = [
         {
             title: '基础使用',
-            confirmText: '收藏',
-            cancelText: '取消',
+            confirmText: '上传视频',
+            cancelText: '上传图片',
             activeClass: '',
             id: 0
         },
         {
-            title: '文本显示',
+            title: '底部按钮显示',
             confirmText: '是',
             cancelText: '否',
             activeClass: '',
@@ -59,53 +63,59 @@ export default class stCollectPage extends Vue {
         },
 
     ];
-    isCollect = false;
-    title = '';
-    collectTitle = '';
-    
-    
 
-    handleConfirm (index: number) {
+    uploadList = [];
+    postUrl = '/system/?do=upload_pic';
+    loadType = 'img';
+    slotProps = null;
+    btnShow = false;
+
+     handleConfirm (index: number) {
         this.dataList[index].activeClass = 'active';
         switch(index) {
             case 0:
-                this.isCollect = true;
+                
+                this.postUrl = '/system/?do=upload_video';
+                this.loadType = 'video';
                 break;
             case 1:
-                this.title = '取消';
-                this.collectTitle = '收藏';
-                this.isCollect = true;
+                 this.btnShow = true;
                 break;
         }
        
     }
 
     handleCancel (index: number) {
-        this.isCollect = false;
         this.dataList[index].activeClass = '';
         switch(index) {
             case 0:
-                this.isCollect = false;
+                this.postUrl = '/system/?do=upload_pic';
+                this.loadType = 'img';
                 break;
             case 1:
-                this.title = '';
-                this.collectTitle = '';
-                this.isCollect = true;
+                this.btnShow = false;
                 break;
         }
     }
 
-    handleCollect (val: any) {
-        this.isCollect = val;
-        if(val) {
-            this.dataList[0].activeClass = 'active';
+    handleLoadEnd (res: any) {
+        if(this.loadType == 'img') {
+            res.cover = res.upload_url;
+            res.id = res.file_id;
         } else {
-            this.dataList[0].activeClass = '';
+            res.cover = res.video_cover_url;
+            res.id = res.file_id;
         }
-        
+        this.uploadList.push(res);
     }
 
-
+    handleDelete (index: string) {
+        console.log(index);
+        const ind = this.uploadList.findIndex((item: any) => item.id == index);
+        if(ind != -1) {
+            this.uploadList.splice(ind, 1);
+        }
+    }
 }
 
 </script>

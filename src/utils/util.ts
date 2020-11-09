@@ -127,44 +127,44 @@ export const $reLunch = (params: {url: string}) => {
    */
   export const { platform } = uni.getSystemInfoSync();
 
-    /**
-     * 判断IOS是否获得相册权限
-     */
-   export const requestIosPermission = (permisionID) => {
-        var result = permision.judgeIosPermission(permisionID);
-        if (result != true) {
-            permision.gotoAppPermissionSetting();
-        } 
-        return result;
-    }
+/**
+ * 判断IOS是否获得相册权限
+ */
+export const requestIosPermission = (permisionID) => {
+    var result = permision.judgeIosPermission(permisionID);
+    if (result != true) {
+        permision.gotoAppPermissionSetting();
+    } 
+    return result;
+}
 
-     /**
-     * 判断安卓是否获得相册权限
-     */
-   export const requestAndroidPermission =  async (permisionID) => {
-        var result = await permision.requestAndroidPermission(permisionID);
-        var strStatus;
-        if (result == 1) {
-            strStatus = "已获得授权";
-        } else if (result == 0) {
-            uni.showModal({
-                content: permisionID + strStatus + "是否去打开",
-                showCancel: false,
-                success: (res) => {
-                    if (res.confirm) {
-                        permision.gotoAppPermissionSetting();
-                    }
-                },
-            });
-        } else {
-            (strStatus = "被永久拒绝权限"),
-            uni.showModal({
-                content: permisionID + strStatus,
-                showCancel: false,
-            });
-        }
-        return result;
+/**
+ * 判断安卓是否获得相册权限
+ */
+export const requestAndroidPermission =  async (permisionID) => {
+    var result = await permision.requestAndroidPermission(permisionID);
+    var strStatus;
+    if (result == 1) {
+        strStatus = "已获得授权";
+    } else if (result == 0) {
+        uni.showModal({
+            content: permisionID + strStatus + "是否去打开",
+            showCancel: false,
+            success: (res) => {
+                if (res.confirm) {
+                    permision.gotoAppPermissionSetting();
+                }
+            },
+        });
+    } else {
+        (strStatus = "被永久拒绝权限"),
+        uni.showModal({
+            content: permisionID + strStatus,
+            showCancel: false,
+        });
     }
+    return result;
+}
 
 
 
@@ -201,4 +201,13 @@ export const $hideLoading = () =>{
 export const sliceDecimal = (str: any) => {
      let arr = str.split('.');
      return '.' + arr[1];
+}
+
+/**
+ * 获取当前页面栈
+ */
+export const $getCurrentPage = () => {
+    const list = getCurrentPages();
+    let current = list[list.length - 1];
+    return current.route;
 }

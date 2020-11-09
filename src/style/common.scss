@@ -1,0 +1,210 @@
+.uni-white-bg {
+    background: $uni-bg-color-white;
+}
+
+button[disabled] {
+    background: $uni-text-color-disable!important;
+    color: $uni-text-color-inverse;
+    font-size: $uni-font-size-lg;
+}
+
+.uni-text-color {
+    color: $uni-text-color;//基本色
+}
+.uni-text-color-inverse {
+    color: $uni-text-color-inverse;
+}
+.uni-text-color-grey {
+    color: $uni-text-color-grey;
+}
+.uni-font-size-sm {
+    font-size: $uni-font-size-sm;
+	line-height: $uni-line-height-sm;
+}
+.uni-font-size-base {
+    font-size: $uni-font-size-base;
+	line-height: $uni-line-height-base;
+}
+.uni-font-size-lg {
+    font-size: $uni-font-size-lg;
+    line-height: $uni-line-height-lg;
+    
+}
+.uni-font-size-xm {
+    font-size: $uni-font-size-xm;
+	line-height: $uni-line-height-xm;
+}
+
+.uni-btn-size-lg {
+    width:672rpx;
+    height:92rpx;
+    line-height: 92rpx;
+    border-radius:4rpx;
+    font-size: $uni-font-size-lg;
+    margin: 0 auto;
+    color: $uni-text-color-inverse;
+    box-shadow:0px 6px 12px rgba(98,78,255,0.24);
+    border-radius: 12rpx;
+}
+.uni-btn-size-sm {
+    display: inline-block;
+    line-height: 60rpx;
+    height: 60rpx;
+    padding: 0rpx 20rpx;
+    font-size: $uni-font-size-base;
+    color: $uni-text-color-inverse;
+    vertical-align: center;
+    box-shadow:0px 6px 12px rgba(98,78,255,0.24);
+    border-radius: 12rpx;
+}
+
+.uni-btn-radius {
+    border-radius:46rpx;
+}
+
+.uni-bg-color-primary {
+    background-color: $uni-color-primary;
+    color: $uni-text-color-inverse;
+}
+
+.button-hover, .navigator-hover {
+    color: rgba(0,0,0, 0.6);
+    background-color: #dedede;
+}
+
+.uni-bg-color-opacity {
+    background-color: transparent;
+    border: 2rpx solid $uni-color-primary;
+    color: $uni-color-primary;
+}
+
+.link-color {
+    color: $link-color!important;
+}
+
+.ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
+}
+.ellipsis-3 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box!important;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.ellipsis-2 {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box!important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.overflow {
+    overflow: hidden;
+}
+
+.flex-1 {
+    flex: 1;
+}
+.flex {
+    display: -webkit-box; /* 老版本语法: Safari, iOS, Android browser, older WebKit browsers. */
+    display: -moz-box; /* 老版本语法: Firefox (buggy) */
+    display: -ms-flexbox; /* 混合版本语法: IE 10 */
+    display: -webkit-flex; /* 新版本语法: Chrome 21+ */
+    display: flex; /* 新版本语法: Opera 12.1, Firefox 22+ */
+}
+
+.flex-vertical {
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+.flex-align-center {
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.flex-align-start {
+    -webkit-box-align: start;
+    -webkit-align-items: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.flex-align-end {
+    -webkit-box-align: end;
+    -webkit-align-items: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+.flex-justify-center {
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.flex-justify-start {
+    -webkit-box-pack: start;
+    -webkit-justify-content: flex-start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+}
+
+.flex-justify-end {
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: start;
+    justify-content: flex-end;
+}
+
+.flex-justify-between {
+    -webkit-box-pack: center;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: center;
+    justify-content: space-between;
+}
+
+.flex-justify-around {
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-around;
+    -ms-flex-pack: justify;
+    justify-content: space-around;
+}
+.text-left {
+    text-align: left!important;
+}
+.text-right {
+    text-align: right!important;
+}
+.text-center {
+    text-align: center!important;
+}
+.font-weight {
+    font-weight: 700;
+}
+
+.uni-input-placeholder {
+	color: #999;
+}
+
+.uni-textarea-placeholder {
+	color: #999;
+}
+
+
+::-webkit-scrollbar { width:0;height:0px; display: none; }
+::-webkit-scrollbar-thumb {
+    opacity: 1.5;
+}

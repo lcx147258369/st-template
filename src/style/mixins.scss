@@ -1,0 +1,18 @@
+@each $direction in left, right, top, bottom {
+    .padding-#{$direction}-20 {
+        padding-#{$direction}: $uni-spacing-row-base;
+    }
+    .margin-#{$direction}-20 {
+        margin-#{$direction}: $uni-spacing-row-base;
+    }   
+}
+
+@each $border in left, right, top, bottom {
+    .border-#{$border} {
+        border-#{$border}: 2rpx solid $uni-border-color;
+    }
+    .margin-#{$border} {
+        border-#{$border}: 2rpx solid $uni-border-color;
+    }
+    
+}

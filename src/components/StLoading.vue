@@ -6,7 +6,7 @@
         :src="iconUri"
       >
       </image>
-      <view v-if="loadText">{{ loadText }}</view>
+      <view v-if="loadText" class="u-light-color">{{ loadText }}</view>
   </view>
 </template>
 
@@ -39,6 +39,9 @@ export default class StLoading extends Vue {
     .loading-pic {
        width: 180upx;
        height: 180upx; 
+    }
+    .loadText {
+        color: #666666;
     }
 }
 </style>

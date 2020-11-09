@@ -76,6 +76,24 @@
 			   //#endif
                "navigationBarTitleText": "ReviewState"
             }
+        },
+        {
+            "path": "pages/stUploadPage/stUploadPage",
+            "style": {
+                //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "Upload"
+            }
+        },
+        {
+            "path": "pages/error/error",
+            "style": {
+                //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "Error"
+            }
         }
     ],
 	"globalStyle": {
