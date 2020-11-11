@@ -5,15 +5,16 @@
             :tabList="scrollList"
             :index="scrollIndex"
             :rightIcon="rightIcon"
-            @iconClick="handleDrop"
+            @icon-click="handleDrop"
           >
           </StScrollList>
           <StPopupList
             :dataList="dropList"
-            :show="dropShow"
+            :show.sync="dropShow"
             :tabInd="scrollIndex"
             @change="handleDropChange"
-            :boxStyle="{paddingTop: '100rpx'}"
+            :boxStyle="{paddingTop: '140rpx'}"
+            :activeStyle="{background: 'blue', color: '#ffffff'}"
           >
           </StPopupList>
       </view>
@@ -115,10 +116,6 @@ export default class stScrollListPage extends Vue {
         {
             title: '作业待审核',
             id: 4
-        },
-        {
-            title: '作业待审核',
-            id: 5
         }
     ];
     dropShow = false;
@@ -165,6 +162,6 @@ export default class stScrollListPage extends Vue {
 
 <style lang="scss" scoped>
 .container {
-    padding: 40rpx 40rpx;
+    padding: 80rpx 40rpx;
 }
 </style>

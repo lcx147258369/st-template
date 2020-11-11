@@ -2,7 +2,7 @@
  <view class="container">
       <view class="content">
           <StLoading
-            v-show="show"
+            :show="show"
             :loadText="loadText"
             :imgStyle="imgStyle"
             @click.native="handleClose"

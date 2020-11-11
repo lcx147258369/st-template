@@ -51,7 +51,7 @@ service.interceptors.response.use(
              if(res.id == '0000') {
                 // UserModule.ResetToken();
 
-            }
+             }
         } 
         return response.data;
 

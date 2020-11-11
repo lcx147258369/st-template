@@ -1,11 +1,6 @@
 <template>
-  <div class="check-demo-wrap">
-    <div class="demo_main  flex flex-justify-center flex-align-center">
-      <image :src="src" class="demo_pic" :style="styles" @tap="previewImage(src)"></image>
-      <view class="close_pic">
-        <image :src="'close_demo.png '| serve-cdn"  @click="changeDialogStatus"></image>
-      </view>
-    </div>
+  <div>
+    <image :src="src" class="demo_pic" :style="styles" @tap="previewImage(src)"></image>
   </div>
 </template>
 <script lang="ts">
@@ -21,9 +16,6 @@ export default {
    
   },
   methods: {
-    changeDialogStatus() {
-      this.$emit("close", false);
-    },
     /**
      * 预览图片
      */
@@ -152,41 +144,5 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.check-demo-wrap {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  background: rgba(0, 0, 0, 0.5);
-  //   opacity: 0.5;
-  top: 0;
-//   pointer-events: none;
-  z-index: 999;
-  .demo_main {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    max-height: 90%;
-    margin: 0 auto;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-    .demo_pic {
-      width: 90%;
-      height: 996upx;
-    }
-    .close_pic {
-      display: flex;
-      justify-content: center;
-      image {
-        margin-top: 40upx;
-        width: 55upx;
-        height: 55upx;
-      }
-    }
-  }
-}
+
 </style>

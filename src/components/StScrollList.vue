@@ -12,12 +12,13 @@
                     scroll-with-animation 
                 > 
                     <view class="tab-wrapper flex flex-align-center">
-                        <view v-for="(item,index) in tabList" :key="item.id" class="flex flex-align-center" :id="'tab'+index" @tap="handleChange(item.id,$event)">
+                        <view v-for="item in tabList" :key="item.id" class="flex flex-align-center" :id="'tab'+ item.id" @tap="handleChange(item.id,$event)">
                             <view
                                 class="tab-item uni-font-size-sm"
                                 :class="[{'active':tabInd == item.id},{'margin-left':item.id == 0}]"
                             >
                                 <text class="title">{{ item.title }}</text>
+                                <text class="num" v-if="num">({{item.num}})</text>
                             </view>
                         </view>
                     </view>
@@ -42,9 +43,9 @@ export default class StScrollList extends Vue {
     dropshow = false;
     scrollInto = '';
     tabItemLeft = [];
-    @Prop({default: ''}) tabList!: []; // 数据
-    @Prop({default: ''}) index!: number; // 下标
-    @Prop({default: ''}) activeStyle!: string; // 选中状态样式
+    @Prop({default: null}) tabList!: []; // 数据
+    @Prop({default: 0}) index!: number; // 下标
+    @Prop({default: false}) num!:boolean; // 是否显示数字
     @Prop({default: require('../static/dropdown.png')}) rightIcon!:string; // 右侧的图标
 
 
@@ -111,7 +112,7 @@ export default class StScrollList extends Vue {
      * 显示下拉菜单
      */
     toggleDrop(){
-        this.$emit('iconClick', true);
+        this.$emit('icon-click', true);
         this.dropshow=!this.dropshow;
     }
 
@@ -153,6 +154,9 @@ export default class StScrollList extends Vue {
 		   font-weight:bold;
            color:rgba(116,46,221,1);
 		   border-bottom: 4upx solid rgba(116,46,221,1);
+        }
+        .num {
+            color: rgba(116,46,221,1);
         }
         
     }

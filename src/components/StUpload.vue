@@ -56,10 +56,10 @@ import service from "@/serve/request";
 
 @Component({})
 export default class StUpload extends Vue {
-    @Prop({default: 0}) loadLeng!: number;  // 上传的数量
+    @Prop({default: 1}) loadLeng!: number;  // 上传的数量
     @Prop({default: 'img'}) loadType!:string; // 上传类型
     @Prop({default: 1}) maximum!:number;    // 最大选择数
-    @Prop({default: [], required: true}) dataList!: any; // 展示上传的图片
+    @Prop({default: [], required: true}) dataList!: []; // 展示上传的图片
     @Prop({default: null}) params!: object; // 额外参数
     @Prop({default: false}) disabled!: boolean; // 禁用上传
     @Prop({default: false}) isErrorText!: boolean; // 是否显示失败的原因 
@@ -175,6 +175,17 @@ export default class StUpload extends Vue {
      */
     handleCompress(e: any) {
         var file = e.target.files[0];
+        let sliceSize = file.size;
+        let sliceBuffer = [];
+        while(sliceSize > 1024*1024) {
+            const blobPart = file.slice(sliceBuffer.length * 1024 * 1024, (sliceBuffer.length + 1) * 1024 * 1024);
+            sliceBuffer.push(
+                blobPart
+            );
+            sliceSize -= (1024 * 1024);
+        }
+
+
         if (file.size > 1024 * 1024 * 100) {
             return uni.showToast({
                 title: "可上传视频最大为100MB"

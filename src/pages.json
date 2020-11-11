@@ -94,6 +94,15 @@
 			   //#endif
                "navigationBarTitleText": "Error"
             }
+        },
+        {
+            "path": "pages/wechatPage/wechatPage",
+            "style": {
+                //#ifdef H5 || APP-PLUS
+               "navigationStyle": "custom", 
+			   //#endif
+               "navigationBarTitleText": "WechatLogin"
+            }
         }
     ],
 	"globalStyle": {

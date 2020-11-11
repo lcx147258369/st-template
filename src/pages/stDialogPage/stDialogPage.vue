@@ -1,7 +1,19 @@
 <template>
   <view class="container">
       <view class="content">
-          
+                  <StDialog
+                    title="弹窗噢"
+                    :show.sync="show"
+                    @confirm="handleClose"
+                    @cancel="handleClose"
+                    :isCancel="isCancel"
+                    :cancelTitle="cancelText"
+                    :confirmTitle="confirmText"
+                >
+                    <view>
+                        这里是要显示的内容噢？看到了就确认一下
+                    </view>
+                </StDialog>
       </view>
       <view class="list">
           <view class="caption"></view>
@@ -20,18 +32,7 @@
           </view>
       </view>
 
-        <StDialog
-            title="弹窗噢"
-            :show.sync="show"
-            @confirm:show="handleClose"
-            :isCancel="isCancel"
-            :cancelTitle="cancelText"
-            :confirmTitle="confirmText"
-        >
-        <view slot="content">
-            这里是要显示的内容噢？看到了就确认一下
-        </view>
-        </StDialog>
+
   </view>
 </template>
 
@@ -111,9 +112,9 @@ export default class stDialogPage extends Vue {
         }
     }
 
-    handleClose () {
+    handleClose (res: boolean) {
         this.show = false;
-        this.dataList[this.listIndex].activeClass = '';
+        this.dataList[this.listIndex].activeClass = '';       
     }
 
 

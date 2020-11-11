@@ -9,17 +9,14 @@
           >
           </u-cell-item>
       </view>
-      <NetError></NetError>
   </view>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import NetError from "@/components/NetError.vue";
 
 @Component({
     components: {
-        NetError
     }
 })
 export default class index extends Vue {
@@ -72,6 +69,12 @@ export default class index extends Vue {
             title: 'Error',
             route: '/pages/error/error',
             id: 7
+        },
+        {
+            icon: '',
+            title: 'WechatLogin',
+            route: '/pages/wechatPage/wechatPage',
+            id: 8
         }
     ]
 }
