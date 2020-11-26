@@ -1,7 +1,7 @@
 <template>
   <view class="container">
       <view class="content">
-                  <StDialog
+                <StDialog
                     title="弹窗噢"
                     :show.sync="show"
                     @confirm="handleClose"
@@ -116,7 +116,6 @@ export default class stDialogPage extends Vue {
         this.show = false;
         this.dataList[this.listIndex].activeClass = '';       
     }
-
 
 }
 

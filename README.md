@@ -19,7 +19,6 @@ npm run build
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
-st-ui 基于uview的优化组件
 
 
 
