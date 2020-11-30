@@ -17,23 +17,23 @@ const service = new Request({
 service.interceptors.request.use(
     (config) => {
         //#ifdef H5
-        config.header['device'] = 'wap';
+        config.header['We-Device'] = 'wap';
         //#endif
 
         //#ifdef MP-WEIXIN
-        config.header['device'] = 'wx';
+        config.header['We-Device'] = 'wx';
         //#endif
 
         //#ifdef APP_PLUS
-        config.header['device'] = 'app';
-        config.header['vcode'] = plus.runtime.versionCode;
+        config.header['We-Device'] = 'app';
+        config.header['We-Vcode'] = plus.runtime.versionCode;
         const vcode = plus.runtime.versionCode;
         //#endif
 
         if (UserModule.token && UserModule.token != 'undefined') {
             // config.header['token'] = UserModule.token;
         }
-        config.header['token'] = '9dceSNszlOx8PDrJeFKntvyF00TcgpBiaYMUSwRmXlBWtBE5nt2wYv8b2sOkW0Y3YMSXOfu2gf0or3Y7vOSuow'; // 这里是为了接口测试，实际使用上面的部分
+        config.header['We-Token'] = '9dceSNszlOx8PDrJeFKntvyF00TcgpBiaYMUSwRmXlBWtBE5nt2wYv8b2sOkW0Y3YMSXOfu2gf0or3Y7vOSuow'; // 这里是为了接口测试，实际使用上面的部分
 
         return config
     },

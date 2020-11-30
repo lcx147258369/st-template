@@ -10,13 +10,15 @@
                     <image 
                         class="upload-pic" 
                         :src="item.cover"
+                        :style="coverStyle"
                     >
                     </image>
+                    
                     <u-icon class="play-circle" name="play-circle"  @click.self="handleTarget(item.id)" color="#ffffff" size="48"></u-icon>
                     <u-icon class="close-icon" name="close" v-if="!item.status || item.status == 2" color="#ffffff" size="10" @click="handleDelete(item.id)"></u-icon>
                 </view>
             </view>
-            <image v-if="dataList.length <= loadLeng" src="../static/upload_video@3x.png" class="upload-pic"  @tap="handleUploadVideo"></image>
+            <image v-if="dataList.length <= loadLeng" src="../static/upload_video@3x.png"  :style="coverStyle" class="upload-pic"  @tap="handleUploadVideo"></image>
       </view>
 
        <view v-if="loadType == 'img'">
@@ -31,6 +33,7 @@
                      <image 
                         class="upload-pic" 
                         :src="item.cover"
+                        :style="coverStyle"
                         @tap="handleTarget(item.id)"
                     >
                     </image>
@@ -40,7 +43,7 @@
                     </view>
                 </view>
                 <view class="upload-box" v-if="disabled == false && dataList.length <= loadLeng">
-                    <image src="../static/upload_pic@3x.png" class="upload-pic"   @tap="handleUploadPic"></image>
+                    <image src="../static/upload_pic@3x.png" class="upload-pic"   :style="coverStyle"  @tap="handleUploadPic"></image>
                 </view>  
             </view>
       </view>
@@ -64,7 +67,8 @@ export default class StUpload extends Vue {
     @Prop({default: false}) disabled!: boolean; // 禁用上传
     @Prop({default: false}) isErrorText!: boolean; // 是否显示失败的原因 
     @Prop({default: '', required: true}) postUrl: string; // 上传的地址
-
+    @Prop({default: ''}) coverStyle!: object; // cover样式
+    @Prop({default: ''}) loadIcon!: string; // 上传的图标
     /**
      * 点击播放按钮或者图片
      */
