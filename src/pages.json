@@ -6,7 +6,7 @@
 		{
             "path": "pages/index/index",
             "style": {
-				"enablePullDownRefresh":true,
+                "enablePullDownRefresh":true,
                //#ifdef H5 || APP-PLUS
                "navigationStyle": "custom", 
 			   //#endif
@@ -14,100 +14,18 @@
             }
         },
         {
-            "path": "pages/modules/modules",
-            "style": {
-				"enablePullDownRefresh":true,
-               //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "模块"
-            }
-        },
-        {
-            "path": "pages/stDialogPage/stDialogPage",
+            "path": "pages/user/user",
             "style": {
                //#ifdef H5 || APP-PLUS
                "navigationStyle": "custom", 
 			   //#endif
-               "navigationBarTitleText": "Dialog"
-            }
-        },
-        {
-            "path": "pages/stCollectPage/stCollectPage",
-            "style": {
-               //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "Collect"
-            }
-        },
-        {
-            "path": "pages/stScrollListPage/stScrollListPage",
-            "style": {
-               //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "ScrollList"
-            }
-        },
-        {
-            "path": "pages/stPreviewImagePage/stPreviewImagePage",
-            "style": {
-               //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "PreviewImage"
-            }
-        },
-        {
-            "path": "pages/stLoadingPage/stLoadingPage",
-            "style": {
-                //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "Loading"
-            }
-        },
-        {
-            "path": "pages/stReviewStatePage/stReviewStatePage",
-            "style": {
-                //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "ReviewState"
-            }
-        },
-        {
-            "path": "pages/stUploadPage/stUploadPage",
-            "style": {
-                //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "Upload"
-            }
-        },
-        {
-            "path": "pages/error/error",
-            "style": {
-                //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "Error"
-            }
-        },
-        {
-            "path": "pages/wechatPage/wechatPage",
-            "style": {
-                //#ifdef H5 || APP-PLUS
-               "navigationStyle": "custom", 
-			   //#endif
-               "navigationBarTitleText": "WechatLogin"
+               "navigationBarTitleText": "组件"
             }
         }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "视推联盟",
+		// "navigationBarTitleText": "视推联盟",
         "navigationBarBackgroundColor": "#fff",
         "backgroundColor": "#F1F6F9"
     },
@@ -121,12 +39,12 @@
                 "pagePath": "pages/index/index",
                 "iconPath": "/static/tab_icon1@2x.png",
                 "selectedIconPath": "/static/tab_cur_icon1@2x.png",
-                "text": "组件"
+                "text": "首页"
             },
             {
                 "pagePath": "pages/index/index",
-                "iconPath": "/static/tab_icon2.png",
-                "selectedIconPath": "/static/tab_cur_icon2.png",
+                "iconPath": "/static/tab_icon3.png",
+                "selectedIconPath": "/static/tab_cur_icon3.png",
                 "text": "模块"
             }
         ]

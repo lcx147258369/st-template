@@ -8,9 +8,9 @@
                 <u-button type="primary" class="btn-item" size="mini" @click="reFresh">重新加载</u-button>
             </view>
         </view>
-        <view v-else>
+        <!-- <view v-else>
            <u-no-network></u-no-network>
-        </view>
+        </view> -->
   </view>
 </template>
 

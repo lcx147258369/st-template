@@ -8,7 +8,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
-export default class modules extends Vue {
+export default class user extends Vue {
 
 }
 
